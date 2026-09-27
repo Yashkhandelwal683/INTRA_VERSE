@@ -1,0 +1,4 @@
+/* Vercel SPA Routing Configuration */
+
+/* Route all requests to index.html for React Router to handle */
+/*    /index.html   200

@@ -1,0 +1,103 @@
+# ===========================
+# Dependencies
+# ===========================
+node_modules/
+.pnp
+.pnp.js
+
+# ===========================
+# Environment Variables
+# ===========================
+.env
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local
+.env*.local
+
+# ===========================
+# Build outputs
+# ===========================
+dist/
+build/
+out/
+
+# ===========================
+# Logs
+# ===========================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ===========================
+# OS Files
+# ===========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===========================
+# Editor/IDE
+# ===========================
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ===========================
+# Testing
+# ===========================
+coverage/
+.nyc_output/
+
+# ===========================
+# Misc
+# ===========================
+*.pem
+*.key
+*.cert
+.cache/
+tmp/
+temp/
+
+# ===========================
+# Secrets & Credentials
+# ===========================
+**/*.env
+**/.env.*
+**/RENDER_PRODUCTION_ENV.md
+
+# ===========================
+# Misc project files
+# ===========================
+backend.md
+frontend.md
+frontendnew.md
+
+# ===========================
+# Extra safeguards for a public repo
+# ===========================
+# Never commit real secrets, even if a tool generates them
+*.pem
+*.key
+*.cert
+*.p12
+.env
+.env.*
+!.env.example
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

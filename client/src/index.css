@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-surface text-slate-100 font-sans antialiased;
+    min-height: 100vh;
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-surface; }
+  ::-webkit-scrollbar-thumb { @apply bg-surface-border rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-primary-600; }
+
+  ::selection { @apply bg-primary-600/40 text-white; }
+}
+
+@layer components {
+  /* ── Glass card ── */
+  .glass {
+    @apply bg-surface-card/80 backdrop-blur-xl border border-surface-border/60 rounded-2xl;
+  }
+  .glass-sm {
+    @apply bg-surface-card/60 backdrop-blur-md border border-surface-border/50 rounded-xl;
+  }
+
+  /* ── Gradient text ── */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-400 via-violet-400 to-accent-400 bg-clip-text text-transparent;
+  }
+
+  /* ── Buttons ── */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 font-semibold rounded-xl
+           transition-all duration-200 cursor-pointer select-none
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-surface
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-sm  { @apply btn px-3 py-1.5 text-sm; }
+  .btn-md  { @apply btn px-5 py-2.5 text-sm; }
+  .btn-lg  { @apply btn px-7 py-3.5 text-base; }
+
+  .btn-primary {
+    @apply bg-primary-600 hover:bg-primary-500 active:bg-primary-700 text-white shadow-glow-sm hover:shadow-glow;
+  }
+  .btn-secondary {
+    @apply bg-surface-input hover:bg-surface-border text-slate-200 border border-surface-border;
+  }
+  .btn-ghost {
+    @apply hover:bg-white/5 text-slate-300 hover:text-white;
+  }
+  .btn-danger {
+    @apply bg-red-600/20 hover:bg-red-600 text-red-400 hover:text-white border border-red-600/30;
+  }
+  .btn-accent {
+    @apply bg-accent-500 hover:bg-accent-400 text-white shadow-md;
+  }
+
+  /* ── Form inputs ── */
+  .input {
+    @apply w-full bg-surface-input border border-surface-border rounded-xl px-4 py-3
+           text-slate-100 placeholder-slate-500
+           focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500/50
+           transition-colors duration-200;
+  }
+  .input-error {
+    @apply border-red-500/60 focus:border-red-500 focus:ring-red-500/30;
+  }
+  .label {
+    @apply block text-sm font-medium text-slate-300 mb-1.5;
+  }
+  .error-msg {
+    @apply text-xs text-red-400 mt-1.5 flex items-center gap-1;
+  }
+
+  /* ── Badge ── */
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold;
+  }
+  .badge-primary  { @apply badge bg-primary-600/20 text-primary-300 border border-primary-600/30; }
+  .badge-success  { @apply badge bg-emerald-600/20 text-emerald-300 border border-emerald-600/30; }
+  .badge-warning  { @apply badge bg-amber-600/20  text-amber-300  border border-amber-600/30; }
+  .badge-danger   { @apply badge bg-red-600/20    text-red-300    border border-red-600/30; }
+  .badge-neutral  { @apply badge bg-slate-600/20  text-slate-300  border border-slate-600/30; }
+
+  /* ── Section container ── */
+  .container-app { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
+
+  /* ── Divider ── */
+  .divider { @apply border-t border-surface-border my-6; }
+
+  /* ── Skeleton ── */
+  .skeleton {
+    @apply bg-surface-border rounded-lg animate-pulse;
+  }
+
+  /* ── Page heading ── */
+  .page-title {
+    @apply text-3xl font-display font-bold text-white;
+  }
+  .page-subtitle {
+    @apply text-slate-400 mt-2;
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     Attendee panel — mint identity
+     Shared by layouts/AttendeeLayout + pages/attendee/*
+     ══════════════════════════════════════════════════════════ */
+
+  /* Surfaces */
+  .panel {
+    @apply rounded-2xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-sm;
+  }
+  .panel-hover {
+    @apply transition-all duration-300 hover:border-mint-500/30 hover:bg-white/[0.035];
+  }
+  .panel-inset {
+    @apply rounded-xl border border-white/[0.05] bg-white/[0.02];
+  }
+  .panel-title {
+    @apply text-sm font-semibold text-white;
+  }
+  .panel-label {
+    @apply text-[10px] font-bold uppercase tracking-[0.14em] text-zinc-500;
+  }
+  .panel-hairline {
+    @apply border-t border-white/[0.06];
+  }
+
+  /* Filter pills — always pair .pill with either .pill-idle or .pill-active */
+  .pill {
+    @apply inline-flex items-center gap-1.5 rounded-xl border px-3.5 py-2
+           text-[13px] font-medium transition-all duration-200;
+  }
+  .pill-idle {
+    @apply border-transparent text-zinc-500 hover:bg-white/[0.04] hover:text-zinc-200;
+  }
+  .pill-active {
+    @apply text-mint-300 shadow-glow-mint-sm;
+  }
+  .pill-active:hover {
+    @apply text-mint-200;
+  }
+  .pill-indicator {
+    @apply absolute inset-0 rounded-xl border border-mint-500/30 bg-mint-500/15;
+  }
+
+  /* Status chip */
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5
+           text-[10px] font-bold uppercase tracking-wide;
+  }
+
+  /* Search field */
+  .search {
+    @apply w-full rounded-xl border border-white/[0.06] bg-white/[0.03] py-2 pl-9 pr-3
+           text-xs text-white placeholder-zinc-500 outline-none transition-all
+           focus:border-mint-500/50 focus:bg-white/[0.05] focus:ring-1 focus:ring-mint-500/30;
+  }
+
+  /* Buttons */
+  .btn-mint {
+    @apply inline-flex select-none items-center justify-center gap-2 rounded-xl
+           bg-gradient-to-r from-mint-500 to-mint-600 px-4 py-2.5
+           text-sm font-semibold text-white shadow-lg shadow-mint-500/20 transition-all duration-200
+           hover:from-mint-400 hover:to-mint-500 hover:shadow-glow-mint
+           active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .btn-mint-sm { @apply px-3.5 py-2 text-xs; }
+  .btn-quiet {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-xl border border-white/[0.06]
+           bg-white/[0.04] px-3.5 py-2 text-xs font-medium text-zinc-400 transition-all duration-200
+           hover:bg-white/[0.07] hover:text-white;
+  }
+
+  /* Inputs */
+  .ap-input {
+    @apply w-full resize-none rounded-xl border border-white/[0.06] bg-white/[0.03] px-3 py-2.5
+           text-xs text-white placeholder-zinc-500 outline-none transition-all
+           focus:border-mint-500/50 focus:ring-1 focus:ring-mint-500/30;
+  }
+
+  /* Loading placeholder */
+  .ap-skeleton {
+    @apply rounded-2xl border border-white/[0.04] bg-white/[0.02] animate-pulse;
+  }
+}
